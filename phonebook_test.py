@@ -4,21 +4,23 @@ from app.phonebook import Phonebook, Contact
 
 class PhonebookTestCase (unittest.TestCase):
 
-    def __init__ (self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.phonebook = Phonebook()
+    def setUp (self):
+        self.phonebook = Phonebook ()
 
 
 
     def test_add_contact (self):
-
-        contact = Contact ('Lazuli', 'Muthoni', '0728655088')
+        contact = Contact ('Lazuli', 'Muthoni', '728655088')
         first_name = self.phonebook.add_contact (contact)
         self.assertEqual (first_name, 'Lazuli')
 
+        #test that it raises ValueError for non int chars
+        with self.assertRaises (ValueError):
+            contact.mobile = '07a5280860'
+
     def test_update_contact (self):
 
-        contact = Contact ('Lazuli', 'Muthoni', '0728655088')
+        contact = Contact ('Lazuli', 'Muthoni', '728655088')
         self.phonebook.add_contact (contact)
 
         # test update first_name alone
@@ -30,25 +32,23 @@ class PhonebookTestCase (unittest.TestCase):
         self.assertEqual (updated_contact.last_name, 'Murimi')
 
         # test update mobile number alone
-        updated_contact = self.phonebook.update_contact("Lazuli Olive", "Murimi", new_mobile = "0725280260")
-        self.assertEqual (updated_contact.mobile, '0725280260')
+        updated_contact = self.phonebook.update_contact("Lazuli Olive", "Murimi", new_mobile = "725280260")
+        self.assertEqual (updated_contact.mobile, 725280260)
 
         # test update All
-        updated_contact = self.phonebook.update_contact("Lazuli Olive", "Murimi", new_mobile = "0728655088",
+        updated_contact = self.phonebook.update_contact("Lazuli Olive", "Murimi", new_mobile = "728655088",
                                                             new_last = 'Muthoni',
                                                             new_first = 'Lazuli')
-        self.assertEqual (updated_contact.mobile, '0728655088')
+
+        # for loop here
+        self.assertEqual (updated_contact.mobile, 728655088)
         self.assertEqual (updated_contact.first_name, 'Lazuli')
         self.assertEqual (updated_contact.last_name, 'Muthoni')
 
 
     def test_delete_contact (self):
 
-        contact = Contact ('Lazuli', 'Muthoni', '0728655088')
-        self.phonebook.add_contact (contact)
-
-        # add a second contact
-        contact = Contact ('Sheelah', 'B', '0725280260')
+        contact = Contact ('Lazuli', 'Muthoni', '728655088')
         self.phonebook.add_contact (contact)
 
         # delete second contact
@@ -66,11 +66,11 @@ class PhonebookTestCase (unittest.TestCase):
 
     def test_view_contact(self):
 
-            contact = Contact ('Lazuli', 'Muthoni', '0728655088')
+            contact = Contact ('Lazuli', 'Muthoni', '728655088')
             self.phonebook.add_contact (contact)
 
-            mobile = self.phonebook.view_contact('Lazuli', 'Muthoni')            
-            self.assertEqual(mobile, '0728655088')
+            mobile = self.phonebook.view_contact('Lazuli', 'Muthoni')
+            self.assertEqual(mobile, 728655088)
 
 
 

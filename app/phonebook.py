@@ -1,7 +1,9 @@
 def main ():
     ''' Main program code here
     '''
-    ...
+    cont = Contact ('La', 'Mur', '728652l')
+    print(cont.mobile)
+    print('done')
 
 
 
@@ -15,14 +17,18 @@ class Contact ():
     def __init__ (self, first_name, last_name, mobile):
         self.first_name = first_name
         self.last_name = last_name
+        self._mobile = None
         self.mobile = mobile
 
-    def __str__ (self):
-        contact_string = '''First Name: {}\nSecond Name: {}\nMobile: {}'''.format(self.first_name,
-                                    self.last_name,
-                                    self.mobile)
-        return contact_string
+    @property
+    def mobile(self):
+        return self._mobile
 
+    @mobile.setter
+    def mobile(self, num):
+        # should raise ValueError for non-int characters
+        num = int(num)
+        self._mobile = num
 
 
 
@@ -69,7 +75,7 @@ class Phonebook():
                 break
 
     def view_contact (self, first_name, last_name):
-        
+
         for contact in self.contacts:
             if contact.first_name == first_name and contact.last_name == last_name:
                 return contact.mobile
