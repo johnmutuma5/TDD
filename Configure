@@ -2,9 +2,6 @@
 
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
-export DB_NAME='test'
-export DB_USER='postgres'
-export DB_PASSWORD='Mathematicss89'
 
 
 make venv
