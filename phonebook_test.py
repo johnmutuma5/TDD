@@ -18,6 +18,9 @@ class PhonebookTestCase (unittest.TestCase):
         with self.assertRaises (ValueError):
             contact.mobile = '07a5280860'
 
+        with self.assertRaises (AssertionError):
+            self.phonebook.add_contact (contact)
+
     def test_update_contact (self):
 
         contact = Contact ('Lazuli', 'Muthoni', '728655088')

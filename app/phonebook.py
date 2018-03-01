@@ -50,6 +50,9 @@ class Phonebook():
         self.contacts = []
 
     def add_contact (self, contact):
+        for existing in self.contacts:
+            if existing.first_name == contact.first_name and existing.last_name == contact.last_name:
+                assert 0, 'Duplicate Contact'
 
         self.contacts.append(contact)
         pushed_contact = self.contacts[-1]
