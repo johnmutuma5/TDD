@@ -3,7 +3,7 @@ Test Driven Development: A demo
 Usage:
   - Clone repo
   - Auto config for Unix
-      * cd into TDD
+      * cd into this projects folder
       * run at terminal "source ./Configure"
       * run at terminal "python phonebook_test.py"
 
